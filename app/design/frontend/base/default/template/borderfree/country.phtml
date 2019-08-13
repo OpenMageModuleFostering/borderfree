@@ -1,0 +1,63 @@
+<?php
+/**
+* This code is part of the Borderfree Magento Extension.
+*
+* @category Borderfree
+* @package Design_Base_Frontend
+* @subpackage Localization_Country
+* @author Jamie Kail <jamie.kail@livearealabs.com>
+* @copyright Copyright (c) 2013 Borderfree (http://www.borderfree.com)
+*
+*/
+?>
+<?php if($this->getBorderfreeEnabled()): ?>
+<?php $countries = $this->getCountries(); ?>
+<?php $currentCountryCode = $this->getShippingCountry(); ?>
+<div class="switch switcher-country">
+    <label><?php echo $this->__('Shipping To') ?>:</label>
+    <div class="switch-wrapper" id="countrySelect">
+        <span class="switcher-holder">
+        	<span onclick="popUpMenu(this);" class="switcher">
+            <?php if($currentCountryCode != "US"):?>
+        		<img src="<?php echo $this->getSkinUrl('images/borderfree/' . $currentCountryCode . '.gif'); ?>" alt="<?php echo $this->htmlEscape($currentCountryCode)?>" />
+            	<?php echo $this->htmlEscape($countries[$currentCountryCode]) ?>
+            <?php else: ?>
+            	<img src="<?php echo $this->getSkinUrl('images/borderfree/US.gif'); ?>" alt="<?php echo "US"?>" />
+	            USA
+            <?php endif;?>
+        	        	</span>
+        </span>
+        <ul style="display:none" id="popId-countrySelect">
+            <li class="current country-<?php echo $this->htmlEscape(Mage::app()->getStore()->getCode()) ?>">
+                <span>
+		            <?php if($currentCountryCode != "US"):?>
+		        		<img src="<?php echo $this->getSkinUrl('images/borderfree/' . $currentCountryCode . '.gif'); ?>" alt="<?php echo $this->htmlEscape($currentCountryCode)?>" />
+		            	<?php echo $this->htmlEscape($countries[$currentCountryCode]) ?>
+		            <?php else: ?>
+		            	<img src="<?php echo $this->getSkinUrl('images/borderfree/US.gif'); ?>" alt="<?php echo "US"?>" />
+			            USA
+		            <?php endif;?>
+            	</span>
+            </li>
+            <?php if($currentCountryCode != "US"):?>
+	            <li class="country-us">
+                	<a href="<?php echo $this->getSwitchCountryUrl("US") ?>">
+            	        <img src="<?php echo $this->getSkinUrl('images/borderfree/US.gif'); ?>" alt="<?php echo "US"?>" />
+	                	USA
+	                </a>
+	            </li>
+            <?php endif;?>
+            <?php foreach ($countries as $_code => $_name): ?>
+                <?php if($_code != $currentCountryCode): ?>
+                    <li class="country-<?php echo $_code ?>">
+                        <a href="<?php echo $this->getSwitchCountryUrl($_code) ?>">
+        					<img src="<?php echo $this->getSkinUrl('images/borderfree/' . $_code . '.gif'); ?>" alt="<?php echo $this->htmlEscape($currentCountryCode)?>" />
+                            <?php echo $_name ?>
+                        </a>
+                    </li>
+                <?php endif; ?>
+            <?php endforeach; ?>
+        </ul>
+    </div>
+</div>
+<?php endif; ?>

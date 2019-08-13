@@ -1,0 +1,7 @@
+<?php 
+	$envoyUrl = Mage::getSingleton("checkout/session")->getEnvouUrl();
+	$domain1 = "checkout";
+	if(Mage::getStoreConfig('borderfree_options/settings/staging'))
+		$domain1 = "stagecheckout";
+?> 
+<script type="text/javascript" src="https://<?php echo $domain1 ?>.fiftyone.com/htmlcheckout/resources/js/merchant.js"></script>

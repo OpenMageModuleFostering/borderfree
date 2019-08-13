@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+<config>
+  <modules>
+    <Borderfree_Settings>
+      <active>true</active>
+      <codePool>local</codePool>
+     </Borderfree_Settings>
+   </modules>
+</config>
+

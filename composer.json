@@ -1,0 +1,16 @@
+{
+    "name": "OpenMageModuleFostering/Borderfree",
+    "type": "magento-module",
+    "license": "SaaS",
+    "homepage": "",
+    "description": "Magento to Borderfree Integration",
+    "authors": [
+    {
+        "name": "Borderfree",
+        "email": "sales@borderfree.com"
+    }
+],
+    "suggest": {
+        "magento-hackathon/magento-composer-installer": "*"
+    }
+}

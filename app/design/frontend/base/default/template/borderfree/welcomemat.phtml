@@ -1,0 +1,48 @@
+<?php
+/**
+* This code is part of the Borderfree Magento Extension.
+*
+* @category Borderfree
+* @package Design_Base_Frontend
+* @subpackage Localization_Welcomemat
+* @author Jamie Kail <jamie.kail@livearealabs.com>
+* @copyright Copyright (c) 2013 Borderfree (http://www.borderfree.com)
+*
+*/
+?>
+<?php if($this->isWelcomeMatEnabled()):?>
+<script type="text/javascript">
+//---------------------------------------------------------//
+// Borderfree International Visitor Welcome Mat | Nov. 2010
+//---------------------------------------------------------//
+ 
+// Write Dynamic JavaScript
+ 
+function wlcme51func(url) {
+        var wlcme51 = document.createElement("script");
+        wlcme51.src = url;
+        wlcme51.type = "text/javascript";
+        document.getElementsByTagName("head")[0].appendChild(wlcme51);
+}
+ 
+// Drop / Check for cookie to ensure visitor only sees Welcome Mat once per session
+function isWelcome() {
+        var c_name = 'wlcme';
+        if (document.cookie.length > 0) {
+                c_start = document.cookie.indexOf(c_name + "=");
+                if (c_start != -1) {
+                        c_start = c_start + c_name.length + 1;
+                        c_end = document.cookie.indexOf(";", c_start);
+                        if (c_end == -1) c_end = document.cookie.length;
+                        return unescape(document.cookie.substring(c_start, c_end));
+                }
+        }
+        return "";
+}
+ 
+// If first page view per session, launch the Welcome Mat
+if (!isWelcome()) {
+    wlcme51func("<?php echo $this->getWelcomeUrl() ?>");
+}
+</script>
+<?php endif;?>

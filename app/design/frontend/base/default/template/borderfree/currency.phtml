@@ -1,0 +1,29 @@
+<?php if ($this->getCurrencyCount() > 1): ?>
+<?php $currencies = $this->getCurrencies(); ?>
+<?php $currentCurrencyCode = $this->getCurrentCurrencyCode(); ?>
+<div class="switch switcher-currency">
+    <label><?php echo $this->__('Currency') ?>:</label>
+    <div class="switch-wrapper" id="currencySelect">
+        <span class="switcher-holder">
+        	<span onclick="popUpMenu(this);" class="switcher">
+        		<?php echo @$this->htmlEscape($currencies[$currentCurrencyCode]) ?>
+        	</span>
+        </span>
+        <ul style="display:none" id="popId-currencySelect">
+            <li class="current currency-<?php echo $this->htmlEscape(Mage::app()->getStore()->getCode()) ?>">
+                <span><?php echo $this->htmlEscape($currentCurrencyCode) ?>
+                <?php if (isset($currencies[$currentCurrencyCode])): ?>
+                    - <?php echo $this->htmlEscape($currencies[$currentCurrencyCode]) ?></span>
+                <?php endif;?>
+            </li>
+            <?php foreach ($currencies as $_code => $_name): ?>
+                <?php if($_code != $currentCurrencyCode): ?>
+                    <li class="currency-<?php echo $_code ?>">
+                        <a href="<?php echo $this->getSwitchCurrencyUrl($_code) ?>"><?php echo $_code ?> - <?php echo $_name ?></a>
+                    </li>
+                <?php endif; ?>
+            <?php endforeach; ?>
+        </ul>
+    </div>
+</div>
+<?php endif; ?>

@@ -1,0 +1,20 @@
+<?php 
+	$envoyUrl = Mage::getSingleton("checkout/session")->getEnvoyUrl();
+	$domain1 = "checkout";
+	$domain2 = "embassy";
+	if(Mage::getStoreConfig('borderfree_options/settings/staging'))
+	{
+		$domain1 = "stagecheckout";
+		$domain2 = "sandbox";
+	}
+
+	if(isset($_GET["ppStatus"]))
+		$envoyUrl = "https://" . $domain1 . ".fiftyone.com/htmlcheckout/views/preloadBack_pp.xhtml?ppStatus=" . $_GET["ppStatus"] . "&token=" . $_GET["token"]; 
+?> 
+
+    <!-- Your custom header here -->
+      <!-- Envoy 3 Checkout URL in iFrame tag -->
+      <iframe name="envoy" id="envoyId" src="<?php echo $envoyUrl ?>" frameBorder="0" scrolling="no" style="width: 100%;"></iframe>
+      <!--Used to call Success, Failure or Pending URL -->
+      <iframe id="__frame" width="0" height="0" frameborder="0" src="https://<?php echo $domain2 ?>.fiftyone.com/utils/empty.jsp"></iframe>
+    <!-- Your custom footer here -->

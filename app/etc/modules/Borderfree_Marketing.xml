@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+<config>
+  <modules>
+    <Borderfree_Marketing>
+      <active>true</active>
+      <codePool>local</codePool>
+     </Borderfree_Marketing>
+   </modules>
+</config>
+

@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<layout version="0.1.0">
+    <default>
+        <reference name="top.switches">
+        	<remove name="currency"/>
+        	<remove name="store_language"/>
+            <block type="borderfreelocalization/switch" name="borderfreelanguage" as="borderfreelanguage" template="borderfree/language.phtml"/>
+            <block type="directory/currency" name="borderfreecurrency" before="borderfreelanguage" template="borderfree/currency.phtml"/>
+            <block type="borderfreelocalization/country" name="borderfree" before="currency" template="borderfree/country.phtml"/>
+        </reference>
+
+        <reference name="before_body_end">
+            <block type="borderfreelocalization/welcomemat" name="borderfree_welcomemat" template="borderfree/welcomemat.phtml"></block>
+        </reference>
+        <reference name="head">
+        	<action method="addCss"><stylesheet>css/borderfree.css</stylesheet></action>
+        </reference>
+    </default>
+    
+    <borderfree>
+    	<reference name="header">
+    		<remove name="account.links" />
+    	</reference>
+        <reference name="top.links">
+        	<action method="removeLinkByUrl"><url helper="customer/getAccountUrl" /></action>
+        </reference>
+    	<reference name="content">
+    		<remove name="checkout.cart.shipping" />
+    		<remove name="checkout.cart.giftcardaccount" />
+    		<reference name="checkout.cart.methods">
+    			<remove name="checkout.cart.methods.multishipping" />
+    		</reference>
+    		<!-- 
+    		<reference name="product.info">
+    			<remove name="product.info.addtocart" />
+    			<block type="catalog/product_view" name="product.info.addtocart" as="addtocart" template="catalog/product/view/addtocart.phtml"/>
+    		</reference>
+    		 -->
+    	</reference>
+    </borderfree>
+</layout>
